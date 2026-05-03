@@ -1,0 +1,52 @@
+.home {
+    width: 100%;
+}
+
+.hero {
+    width: min(100%, 1250px);
+    height: 190px;
+    margin: 0 auto 28px;
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #f5bd2b, #fff0c5);
+    box-shadow: 0 8px 25px #00000025;
+}
+
+.hero h2 {
+    font-size: 58px;
+    color: white;
+    text-shadow: 2px 4px 8px #00000055;
+}
+
+.coins-grid {
+    width: min(100%, 1250px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 245px);
+    justify-content: center;
+    align-items: start;
+    gap: 22px;
+    padding: 0 18px 35px;
+}
+
+.error {
+    color: crimson;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media(max-width: 600px) {
+    .hero {
+        height: 140px;
+    }
+
+    .hero h2 {
+        font-size: 42px;
+    }
+
+    .coins-grid {
+        grid-template-columns: minmax(260px, 1fr);
+    }
+}

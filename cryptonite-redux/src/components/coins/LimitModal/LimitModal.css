@@ -1,0 +1,20 @@
+.modal-backdrop { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: #00000099; }
+.limit-modal { width: min(440px, 92vw); background: white; border-radius: 14px; padding: 28px; text-align: center; box-shadow: 0 20px 45px #00000055; }
+.limit-modal h2 { margin-top: 0; }
+.limit-list { display: grid; gap: 10px; margin-top: 18px; }
+.limit-list button { border: none; background: #fff1c9; color: #5c3a00; padding: 12px; border-radius: 8px; font-weight: bold; text-align: left; }
+.limit-list button:hover { background: #f6bc22; color: white; }
+
+.cancel-button {
+    margin-top: 12px;
+    background: #e5e7eb;
+    color: #111827;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background: #f6251a;
+}

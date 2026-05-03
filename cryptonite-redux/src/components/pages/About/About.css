@@ -1,0 +1,2 @@
+.about-card { background: white; border: 1px solid #efc267; border-radius: 14px; padding: 24px; max-width: 650px; box-shadow: 0 6px 16px #00000014; }
+.profile-placeholder { width: 160px; height: 160px; border-radius: 50%; background: #ffe8ac; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #8b5a00; margin-top: 20px; }

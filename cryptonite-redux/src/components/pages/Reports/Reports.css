@@ -1,0 +1,22 @@
+.reports h2 {
+    font-size: 34px;
+}
+
+.chart-box {
+    height: 430px;
+    background: white;
+    border: 1px solid #efc267;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 6px 16px #00000017;
+}
+
+.chart-note {
+    color: #a15a5a;
+    font-size: 14px;
+}
+
+.reports-error {
+    color: #b00020;
+    font-weight: bold;
+}

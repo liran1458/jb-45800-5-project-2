@@ -1,0 +1,121 @@
+.coin-card {
+    width: 245px;
+    min-height: 170px;
+    background: white;
+    border: 1px solid #f2c04d;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 5px 16px #00000018;
+    transition: min-height 0.2s ease, box-shadow 0.2s ease;
+}
+
+.coin-card.info-open {
+    min-height: 285px;
+    box-shadow: 0 8px 22px #00000022;
+}
+
+.coin-top {
+    display: grid;
+    grid-template-columns: 46px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+}
+
+.coin-top img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.coin-title {
+    min-width: 0;
+}
+
+.coin-top h3 {
+    margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.coin-top p {
+    margin: 0;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-button {
+    width: 100%;
+    margin-top: 22px;
+    border: none;
+    border-radius: 7px;
+    background: #f4b51f;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.info-button:hover {
+    background: #bf8200;
+}
+
+.coin-info {
+    margin-top: 12px;
+    background: #fff6da;
+    border-radius: 8px;
+    padding: 14px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.coin-info p {
+    margin: 10px 0;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch span {
+    display: block;
+    width: 52px;
+    height: 28px;
+    background: #ffe1a5;
+    border-radius: 30px;
+    position: relative;
+}
+
+.switch span::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 3px;
+    left: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.switch input:checked + span {
+    background: #f4b51f;
+}
+
+.switch input:checked + span::before {
+    transform: translateX(24px);
+}
+
+@media(max-width: 600px) {
+    .coin-card {
+        width: 100%;
+    }
+}
+.coin-info-error {
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 8px;
+}
