@@ -1,12 +1,25 @@
-# Cryptonite Redux
-React + TypeScript + Redux project.
+# Cryptonite
 
-## Run
+A React + TypeScript crypto tracking app.
+
+## Features
+- View top 100 cryptocurrencies
+- Search functionality (case insensitive)
+- Select up to 5 coins with modal control
+- More Info per coin with caching (prevents API rate limit)
+- Live reports chart (updates every second)
+- AI recommendations per coin
+- Get all AI recommendations using Promise.all
+
+## Technologies
+- React
+- TypeScript
+- Redux Toolkit
+- Axios
+- Chart.js
+
+## Run locally
+
+```bash
 npm install
 npm run dev
-
-## AI API Key
-The NVIDIA API key is entered by the user in the AI page and saved in localStorage. Do not hard-code it in the code.
-
-GitHub link: https://github.com/liran1458/jb-45800-5-project-2
-
