@@ -14,7 +14,7 @@ import {
 } from "chart.js";
 import coinService from "../../../services/CoinService";
 import { useAppSelector } from "../../../redux/hooks";
-import Loader from "../../common/Loader/Loader"; 
+import Loader from "../../common/Loader/Loader";
 import "./Reports.css";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -105,7 +105,11 @@ function Reports() {
         return (
             <section className="reports">
                 <h2>Live Reports</h2>
-                <p>Please select coins on the Home page.</p>
+
+                <div className="empty-state">
+                    <h3>No coins selected</h3>
+                    <p>Please select coins on the Home page.</p>
+                </div>
             </section>
         );
     }

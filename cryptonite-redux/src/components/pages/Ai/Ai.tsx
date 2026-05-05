@@ -132,11 +132,14 @@ function Ai() {
                     </button>
                 </div>
 
-                <p>The key is saved only in your browser localStorage, not in the code.</p>
+                <p>The key is saved only in your browser localStorage</p>
             </div>
 
             {selectedCoins.length === 0 && (
-                <p>Please select coins on the Home page.</p>
+                <div className="empty-state">
+                    <h3>No coins selected</h3>
+                    <p>Please select coins on the Home page.</p>
+                </div>
             )}
 
             {selectedCoins.length > 0 && (
