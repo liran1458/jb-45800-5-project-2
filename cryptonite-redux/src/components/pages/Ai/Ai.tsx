@@ -4,9 +4,9 @@ import aiService from "../../../services/AiService";
 import coinService from "../../../services/CoinService";
 import { useAppSelector } from "../../../redux/hooks";
 import {
-    clearNvidiaApiKey,
-    getSavedNvidiaApiKey,
-    saveNvidiaApiKey
+    clearGeminiApiKey,
+    getSavedGeminiApiKey,
+    saveGeminiApiKey
 } from "../../../utils/apiKey";
 import "./Ai.css";
 
@@ -20,7 +20,7 @@ function Ai() {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        setApiKey(getSavedNvidiaApiKey());
+        setApiKey(getSavedGeminiApiKey());
     }, []);
 
     function handleSaveKey() {
@@ -28,16 +28,16 @@ function Ai() {
         setMessage("");
 
         if (!apiKey.trim()) {
-            setError("Please enter your NVIDIA API key.");
+            setError("Please enter your Gemini API key.");
             return;
         }
 
-        saveNvidiaApiKey(apiKey.trim());
+        saveGeminiApiKey(apiKey.trim());
         setMessage("API key saved in localStorage.");
     }
 
     function handleClearKey() {
-        clearNvidiaApiKey();
+        clearGeminiApiKey();
         setApiKey("");
         setMessage("API key removed.");
         setError("");
@@ -57,12 +57,8 @@ function Ai() {
                 [coinId]: recommendation
             }));
         }
-        catch (err: any) {
-            setError(
-                err.response?.data?.error?.message ||
-                err.message ||
-                "Failed to get AI recommendation."
-            );
+        catch {
+            setError("Failed to get AI recommendation.");
         }
         finally {
             setLoading(false);
@@ -95,12 +91,8 @@ function Ai() {
 
             setRecommendations(nextRecommendations);
         }
-        catch (err: any) {
-            setError(
-                err.response?.data?.error?.message ||
-                err.message ||
-                "Failed to get AI recommendations."
-            );
+        catch {
+            setError("Failed to get AI recommendations.");
         }
         finally {
             setLoading(false);
@@ -112,11 +104,11 @@ function Ai() {
             <h2>AI Recommendation</h2>
 
             <div className="api-key-box">
-                <label>NVIDIA API Key</label>
+                <label>Gemini API Key</label>
 
                 <input
                     type="password"
-                    placeholder="Paste your NVIDIA API key here"
+                    placeholder="Paste your Gemini API key here"
                     value={apiKey}
                     disabled={loading}
                     onChange={e => setApiKey(e.target.value)}
@@ -127,12 +119,16 @@ function Ai() {
                         Save Key
                     </button>
 
-                    <button disabled={loading} className="secondary" onClick={handleClearKey}>
+                    <button
+                        disabled={loading}
+                        className="secondary"
+                        onClick={handleClearKey}
+                    >
                         Clear Key
                     </button>
                 </div>
 
-                <p>The key is saved only in your browser localStorage</p>
+                <p>The key is saved only in your browser localStorage.</p>
             </div>
 
             {selectedCoins.length === 0 && (
@@ -148,7 +144,7 @@ function Ai() {
                     className="all-button"
                     onClick={getAllRecommendations}
                 >
-                    Get All Recommendations
+                    {loading ? "Loading..." : "Get All Recommendations"}
                 </button>
             )}
 
@@ -168,7 +164,7 @@ function Ai() {
                             disabled={loading}
                             onClick={() => getOneRecommendation(coin.id)}
                         >
-                            Get Recommendation
+                            {loading ? "Loading..." : "Get Recommendation"}
                         </button>
 
                         {recommendations[coin.id] && (

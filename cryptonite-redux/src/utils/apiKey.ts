@@ -1,13 +1,13 @@
-import { NVIDIA_API_KEY } from "./storageKeys";
+import { GEMINI_API_KEY } from "./storageKeys";
 
-export function getSavedNvidiaApiKey(): string {
-    return localStorage.getItem(NVIDIA_API_KEY) || "";
+export function getSavedGeminiApiKey(): string {
+    return localStorage.getItem(GEMINI_API_KEY) || "";
 }
 
-export function saveNvidiaApiKey(apiKey: string): void {
-    localStorage.setItem(NVIDIA_API_KEY, apiKey.trim());
+export function saveGeminiApiKey(apiKey: string): void {
+    localStorage.setItem(GEMINI_API_KEY, apiKey.trim());
 }
 
-export function clearNvidiaApiKey(): void {
-    localStorage.removeItem(NVIDIA_API_KEY);
+export function clearGeminiApiKey(): void {
+    localStorage.removeItem(GEMINI_API_KEY);
 }
