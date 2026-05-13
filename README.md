@@ -1,16 +1,10 @@
-# jb-45800-5-project-2
-# Cryptonite
+# JB Course Projects
 
-React + TypeScript cryptocurrency tracking application.
+This repository contains my projects from the John Bryce Full Stack Development course.
 
-## Project Structure
-The main project is located inside:
+## Projects
 
-cryptonite-redux/
+### Cryptonite Redux
+A cryptocurrency tracking application built with React, TypeScript, Redux Toolkit, Chart.js, and Google Gemini AI.
 
-## Run Locally
-
-```bash
-cd cryptonite-redux
-npm install
-npm run dev
+📁 Project folder: `cryptonite-redux`
