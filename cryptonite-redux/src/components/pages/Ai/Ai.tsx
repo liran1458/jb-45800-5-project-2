@@ -11,6 +11,7 @@ import {
 import "./Ai.css";
 
 function Ai() {
+
     const selectedCoins = useAppSelector(state => state.coins.selectedCoins);
 
     const [apiKey, setApiKey] = useState("");
@@ -24,6 +25,7 @@ function Ai() {
     }, []);
 
     function handleSaveKey() {
+
         setError("");
         setMessage("");
 
@@ -33,24 +35,33 @@ function Ai() {
         }
 
         saveGeminiApiKey(apiKey.trim());
-        setMessage("API key saved in localStorage.");
+        setMessage("saved");
     }
 
     function handleClearKey() {
+
+        if (!getSavedGeminiApiKey()) {
+            return;
+        }
+
         clearGeminiApiKey();
+
         setApiKey("");
-        setMessage("API key removed.");
+        setMessage("removed");
         setError("");
     }
-
     async function getOneRecommendation(coinId: string) {
+
         try {
+
             setError("");
             setMessage("");
             setLoading(true);
 
             const coinData = await coinService.getAiCoinData(coinId);
-            const recommendation = await aiService.getRecommendation(coinData);
+
+            const recommendation =
+                await aiService.getRecommendation(coinData);
 
             setRecommendations(prev => ({
                 ...prev,
@@ -66,15 +77,22 @@ function Ai() {
     }
 
     async function getAllRecommendations() {
+
         try {
+
             setError("");
             setMessage("");
             setLoading(true);
 
             const results = await Promise.all(
+
                 selectedCoins.map(async coin => {
-                    const coinData = await coinService.getAiCoinData(coin.id);
-                    const recommendation = await aiService.getRecommendation(coinData);
+
+                    const coinData =
+                        await coinService.getAiCoinData(coin.id);
+
+                    const recommendation =
+                        await aiService.getRecommendation(coinData);
 
                     return {
                         coinId: coin.id,
@@ -86,7 +104,8 @@ function Ai() {
             const nextRecommendations: Record<string, string> = {};
 
             results.forEach(result => {
-                nextRecommendations[result.coinId] = result.recommendation;
+                nextRecommendations[result.coinId] =
+                    result.recommendation;
             });
 
             setRecommendations(nextRecommendations);
@@ -100,10 +119,13 @@ function Ai() {
     }
 
     return (
+
         <section className="ai-page">
+
             <h2>AI Recommendation</h2>
 
             <div className="api-key-box">
+
                 <label>Gemini API Key</label>
 
                 <input
@@ -115,7 +137,11 @@ function Ai() {
                 />
 
                 <div className="api-key-actions">
-                    <button disabled={loading} onClick={handleSaveKey}>
+
+                    <button
+                        disabled={loading}
+                        onClick={handleSaveKey}
+                    >
                         Save Key
                     </button>
 
@@ -126,55 +152,103 @@ function Ai() {
                     >
                         Clear Key
                     </button>
+
                 </div>
 
-                <p>The key is saved only in your browser localStorage.</p>
+                <p>
+                    The key is saved only in your browser localStorage.
+                </p>
+
+                {message === "saved" && (
+                    <p className="ai-message">
+                        API key saved successfully.
+                    </p>
+                )}
+
+                {message === "removed" && (
+                    <p className="ai-message">
+                        API key removed.
+                    </p>
+                )}
+
+                {error && (
+                    <p className="ai-error">
+                        {error}
+                    </p>
+                )}
+
             </div>
 
             {selectedCoins.length === 0 && (
+
                 <div className="empty-state">
+
                     <h3>No coins selected</h3>
-                    <p>Please select coins on the Home page.</p>
+
+                    <p>
+                        Please select coins on the Home page.
+                    </p>
+
                 </div>
             )}
 
             {selectedCoins.length > 0 && (
+
                 <button
                     disabled={loading}
                     className="all-button"
                     onClick={getAllRecommendations}
                 >
-                    {loading ? "Loading..." : "Get All Recommendations"}
+                    {loading
+                        ? "Loading..."
+                        : "Get All Recommendations"}
                 </button>
             )}
 
             {loading && <Loader />}
-            {message && <p className="ai-message">{message}</p>}
-            {error && <p className="ai-error">{error}</p>}
 
             <div className="ai-list">
-                {selectedCoins.map(coin => (
-                    <div className="ai-card" key={coin.id}>
-                        <img src={coin.image} alt={coin.name} />
 
-                        <h3>{coin.symbol.toUpperCase()} Recommendation</h3>
+                {selectedCoins.map(coin => (
+
+                    <div className="ai-card" key={coin.id}>
+
+                        <img
+                            src={coin.image}
+                            alt={coin.name}
+                        />
+
+                        <h3>
+                            {coin.symbol.toUpperCase()}
+                            {" "}
+                            Recommendation
+                        </h3>
+
                         <p>{coin.name}</p>
 
                         <button
                             disabled={loading}
-                            onClick={() => getOneRecommendation(coin.id)}
+                            onClick={() =>
+                                getOneRecommendation(coin.id)
+                            }
                         >
-                            {loading ? "Loading..." : "Get Recommendation"}
+                            {loading
+                                ? "Loading..."
+                                : "Get Recommendation"}
                         </button>
 
                         {recommendations[coin.id] && (
+
                             <p className="recommendation">
                                 {recommendations[coin.id]}
                             </p>
                         )}
+
                     </div>
                 ))}
+
             </div>
+
         </section>
     );
 }
